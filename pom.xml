@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.sendecki</groupId>
-    <artifactId>Java22Proj</artifactId>
+    <artifactId>WorldCupLiveScoreboard</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
