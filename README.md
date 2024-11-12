@@ -8,13 +8,18 @@ ZALOZENIA:
 - Druzyne identyfikujemy przez unikalna nazwę. W rozwiazaniu identyfikatorem druzyny jest nazwa państwa 
 reprezentowanego przez druzyne
 
-- Obiektem głównym biblioteki jest klasa Scoreboard.
+- Obiektem głównym biblioteki jest klasa ScoreboardService
 
-- Utworzenie rozgrywki jest rownoznaczne z dodaniem informacji do obiektu ScoreBoard:
+- Utworzenie rozgrywki jest rownoznaczne z dodaniem nastepnujacych informacji:
     - druzyna gospodarzy
     - druzyna gosci
     - poczatkowy rezultat ustawiony jako 0:0
     - data i czas rozpoczęcia gry.
+
+W rozwiązaniu wystepuje symulacja utrwalania/zapisu danych poprzez zapis do obiektu trzymanego w pamięci. 
+Pod spodem jest mutowalna lista elementów. Elementy przechowywane są typu OngoingMatch. Mogą one symulować encje/rekordy
+w DB, jednak celowo nie ma encji osobnego obiektu ScoreBoard. Jest wlaśnie serwis ScoreBoardSerwis, ktorego interfejs
+realizuje operacje opisane w wymaganiach.
 
 - Data i czas rozpoczecia gry moga byc generowane przez algorytm, przy zalozeniu, że chwila dodania meczu 
 do ScoreBoard'u jest taka sama, jak chwila rozpoczecia gry. 
