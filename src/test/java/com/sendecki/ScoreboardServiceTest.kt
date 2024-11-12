@@ -62,6 +62,23 @@ class ScoreboardServiceTest {
     }
 
     @Test
+    fun shouldNotAddTheSameMatchSecondTime() {
+        val scoreboardService = ScoreboardService(
+            ScoreboardReadService(InMemoryRepo(scoreStorage)),
+            ScoreboardWriteService(InMemoryRepo(scoreStorage))
+        )
+        scoreboardService.addMatch(
+            Team("Australia"),
+            Team("Greece"))
+        assertThat(scoreboardService.countMatches()).isEqualTo(1)
+
+        scoreboardService.addMatch(
+            Team("Australia"),
+            Team("Greece"))
+        assertThat(scoreboardService.countMatches()).isEqualTo(1)
+    }
+
+    @Test
     fun shouldScoreBeUpdated() {
         val scoreboardReadService = ScoreboardReadService(InMemoryRepo(scoreStorage))
         val scoreboardService = ScoreboardService(
