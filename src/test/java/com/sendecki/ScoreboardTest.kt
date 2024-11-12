@@ -36,13 +36,11 @@ class ScoreboardTest {
         val scoreboard = Scoreboard()
         scoreboard.addMatch(
             Team("Australia"),
-            Team("Portugalia"),
-            LocalDateTime.of(2024, 6, 1, 11,0,0))
+            Team("Portugalia"))
 
         scoreboard.addMatch(
             Team("Hiszpania"),
-            Team("Szwajcaria"),
-            LocalDateTime.of(2024, 6, 1, 11,30,0))
+            Team("Szwajcaria"))
 
         Assert.assertNotNull(scoreboard)
         Assert.assertTrue(scoreboard.active())
@@ -61,7 +59,7 @@ class ScoreboardTest {
     }
 
     @Test
-    fun shouldMatchBeFinished() {
+    fun shouldAloneMatchBeFinished() {
         val scoreboard = Scoreboard()
         val ausie = Team("Australia")
         val portugal = Team("Portugalia")
@@ -73,6 +71,17 @@ class ScoreboardTest {
         Assertions.assertThat(scoreboard.active()).isTrue()
         scoreboard.finishGame(OngoingMatch(homeTeam = ausie, awayTeam = portugal))
         Assertions.assertThat(scoreboard.active()).isFalse()
+    }
+
+    @Test
+    fun shouldSelectedMatchBeFinished() {
+        val scoreboard = Scoreboard(initializeMatches())
+        Assertions.assertThat(scoreboard.active()).isTrue()
+        Assertions.assertThat(scoreboard.matchesCount()).isEqualTo(3)
+        val niemcyPolskaMatch = scoreboard.getMatchByTeams(Team(name = "Niemcy"), Team(name = "Polska"))
+        scoreboard.finishGame(niemcyPolskaMatch!!)
+        Assertions.assertThat(scoreboard.active()).isTrue()
+        Assertions.assertThat(scoreboard.matchesCount()).isEqualTo(2)
     }
 
     @Test
@@ -141,7 +150,7 @@ class ScoreboardTest {
             OngoingMatch(
                 Team("Argentyna"),
                 Team("Wlochy"),
-                LocalDateTime.of(2024, 6, 1, 14,0,0)),
+            LocalDateTime.of(2024, 6, 1, 14,0,0)),
             OngoingMatch(
                 Team("Niemcy"),
                 Team("Polska"),
@@ -149,7 +158,8 @@ class ScoreboardTest {
             OngoingMatch(
                 Team("Holandia"),
                 Team("Szwecja"),
-                LocalDateTime.of(2024, 6, 1, 16,30,0))
+                LocalDateTime.of(2024, 6, 1, 16,30,0)
             )
+        )
     }
 }
