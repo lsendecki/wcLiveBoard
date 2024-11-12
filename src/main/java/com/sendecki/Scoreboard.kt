@@ -13,11 +13,8 @@ class Scoreboard(val ongoingMatches: MutableList<OngoingMatch>) {
     }
 
     fun updateScore(homeTeam: Team, awayTeam: Team) {
-        ongoingMatches
-            .find {
-                it.homeTeam.name == homeTeam.name
-                        && it.awayTeam.name == awayTeam.name
-            }?.let {
+        getMatchByTeams(homeTeam, awayTeam)
+            ?.let {
                 val matchUpdated = it.copy(homeTeam = homeTeam, awayTeam = awayTeam)
                 ongoingMatches.remove(it)
                 ongoingMatches.add(matchUpdated)
