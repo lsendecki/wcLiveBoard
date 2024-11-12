@@ -44,7 +44,7 @@ class ScoreboardTest {
 
         Assert.assertNotNull(scoreboard)
         Assert.assertTrue(scoreboard.active())
-        Assert.assertEquals(2, scoreboard.matchesCount())
+        Assert.assertEquals(2, scoreboard.countMatches())
     }
 
     @Test
@@ -77,11 +77,11 @@ class ScoreboardTest {
     fun shouldSelectedMatchBeFinished() {
         val scoreboard = Scoreboard(initializeMatches())
         Assertions.assertThat(scoreboard.active()).isTrue()
-        Assertions.assertThat(scoreboard.matchesCount()).isEqualTo(3)
+        Assertions.assertThat(scoreboard.countMatches()).isEqualTo(3)
         val niemcyPolskaMatch = scoreboard.getMatchByTeams(Team(name = "Niemcy"), Team(name = "Polska"))
         scoreboard.finishGame(niemcyPolskaMatch!!)
         Assertions.assertThat(scoreboard.active()).isTrue()
-        Assertions.assertThat(scoreboard.matchesCount()).isEqualTo(2)
+        Assertions.assertThat(scoreboard.countMatches()).isEqualTo(2)
     }
 
     @Test

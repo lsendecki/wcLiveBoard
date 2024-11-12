@@ -2,6 +2,7 @@ package com.sendecki
 
 import java.time.LocalDateTime
 
+// thread-unsafe solution based on lists as a storage
 class Scoreboard(val ongoingMatches: MutableList<OngoingMatch> = mutableListOf()) {
 
     constructor(ongoingMatch: OngoingMatch) : this(mutableListOf(ongoingMatch))
@@ -41,7 +42,7 @@ class Scoreboard(val ongoingMatches: MutableList<OngoingMatch> = mutableListOf()
 
     fun active() = ongoingMatches.isNotEmpty()
 
-    fun matchesCount() = ongoingMatches.size
+    fun countMatches() = ongoingMatches.size
 
     fun getMatchByTeams(homeTeam: Team, awayTeam: Team): OngoingMatch? {
         return ongoingMatches
