@@ -12,8 +12,16 @@ class Scoreboard(val ongoingMatches: MutableList<OngoingMatch>) {
                 gameStartedAt = startsAt))
     }
 
-    fun updateScore(homeTeam: Team, awayTeamScore: Team) {
-        TODO("Add update score implementation")
+    fun updateScore(homeTeam: Team, awayTeam: Team) {
+        ongoingMatches
+            .find {
+                it.homeTeam.name == homeTeam.name
+                        && it.awayTeam.name == awayTeam.name
+            }?.let {
+                val matchUpdated = it.copy(homeTeam = homeTeam, awayTeam = awayTeam)
+                ongoingMatches.remove(it)
+                ongoingMatches.add(matchUpdated)
+            }
     }
 
     fun finishGame(match: OngoingMatch) {
@@ -24,7 +32,13 @@ class Scoreboard(val ongoingMatches: MutableList<OngoingMatch>) {
 
     fun active() = ongoingMatches.isNotEmpty()
 
-    fun getMatchByTeams(homeTeam: Team, awayTeam: Team): OngoingMatch {
-        TODO("Add search by teams logic")
+    fun matchesCount() = ongoingMatches.size
+
+    fun getMatchByTeams(homeTeam: Team, awayTeam: Team): OngoingMatch? {
+        return ongoingMatches
+            .find {
+                it.homeTeam.name == homeTeam.name
+                        && it.awayTeam.name == awayTeam.name
+            }
     }
 }

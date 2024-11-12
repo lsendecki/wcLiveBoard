@@ -22,6 +22,7 @@ class ScoreboardTest {
 
         Assert.assertNotNull(scoreboard)
         Assert.assertTrue(scoreboard.active())
+        Assert.assertEquals(2, scoreboard.matchesCount())
     }
 
     @Test
@@ -31,8 +32,8 @@ class ScoreboardTest {
         val awayTeam = Team("Polska", 2)
         scoreboard.updateScore(homeTeam, awayTeam)
         val gameUpdated = scoreboard.getMatchByTeams(homeTeam, awayTeam)
-        Assertions.assertThat(gameUpdated.homeScore()).isEqualTo(3)
-        Assertions.assertThat(gameUpdated.awayScore()).isEqualTo(2)
+        Assertions.assertThat(gameUpdated!!.homeScore()).isEqualTo(3)
+        Assertions.assertThat(gameUpdated!!.awayScore()).isEqualTo(2)
     }
 
     @Test
