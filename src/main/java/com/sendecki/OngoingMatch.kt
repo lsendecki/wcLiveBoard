@@ -28,7 +28,5 @@ data class OngoingMatch(
                 && Objects.equals(awayTeam.name, other.awayTeam.name)
     }
 
-    override fun hashCode(): Int {
-        return Objects.hash(homeTeam.name, awayTeam.name)
-    }
+    override fun hashCode() = Objects.hash(homeTeam.name, awayTeam.name)
 }

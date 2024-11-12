@@ -17,7 +17,10 @@ reprezentowanego przez druzyne
     - data i czas rozpoczęcia gry.
 
 W rozwiązaniu wystepuje symulacja utrwalania/zapisu danych poprzez zapis do obiektu trzymanego w pamięci. 
-Pod spodem jest mutowalna lista elementów. Elementy przechowywane są typu OngoingMatch. Mogą one symulować encje/rekordy
+Pod spodem jest struktura mutowalnego zbioru (Set) elementów. Dzieki temu teoretycznie zapewniamy unikalnosc 
+zapamiętywanych spotkań miedzy druzynami. 
+
+Elementy przechowywane są typu OngoingMatch. Mogą one symulować encje/rekordy
 w DB, jednak celowo nie ma encji osobnego obiektu ScoreBoard. Jest wlaśnie serwis ScoreBoardSerwis, ktorego interfejs
 realizuje operacje opisane w wymaganiach.
 
