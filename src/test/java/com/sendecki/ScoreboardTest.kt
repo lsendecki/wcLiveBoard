@@ -61,6 +61,21 @@ class ScoreboardTest {
     }
 
     @Test
+    fun shouldMatchBeFinished() {
+        val scoreboard = Scoreboard()
+        val ausie = Team("Australia")
+        val portugal = Team("Portugalia")
+
+        scoreboard.addMatch(
+            ausie,
+            portugal)
+
+        Assertions.assertThat(scoreboard.active()).isTrue()
+        scoreboard.finishGame(OngoingMatch(homeTeam = ausie, awayTeam = portugal))
+        Assertions.assertThat(scoreboard.active()).isFalse()
+    }
+
+    @Test
     fun shouldCreateSmallOrderedSummary() {
         val scoreboard = Scoreboard(ongoingMatches = initializeMatches())
         scoreboard.updateScore(

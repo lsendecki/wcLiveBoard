@@ -6,7 +6,7 @@ import java.time.ZoneOffset
 data class OngoingMatch(
     val homeTeam: Team,
     val awayTeam: Team,
-    val gameStartedAt: LocalDateTime,
+    val gameStartedAt: LocalDateTime = LocalDateTime.now(),
 ) {
     fun homeScore() = homeTeam.currentScore
     fun awayScore() = awayTeam.currentScore

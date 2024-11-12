@@ -6,7 +6,7 @@ class Scoreboard(val ongoingMatches: MutableList<OngoingMatch> = mutableListOf()
 
     constructor(ongoingMatch: OngoingMatch) : this(mutableListOf(ongoingMatch))
 
-    fun addMatch(homeTeam: Team, awayTeam: Team, startsAt: LocalDateTime) {
+    fun addMatch(homeTeam: Team, awayTeam: Team, startsAt: LocalDateTime = LocalDateTime.now()) {
         ongoingMatches.add(
             OngoingMatch(
                 homeTeam=homeTeam,
@@ -24,7 +24,11 @@ class Scoreboard(val ongoingMatches: MutableList<OngoingMatch> = mutableListOf()
     }
 
     fun finishGame(match: OngoingMatch) {
-        TODO("Add finish game implementation ")
+        getMatchByTeams(match.homeTeam, match.awayTeam)
+            ?.let {
+                ongoingMatches.remove(it)
+                println("The match between ${match.homeTeam} and ${match.awayTeam} was removed")
+            }
     }
 
     fun getSummary() =
@@ -41,9 +45,8 @@ class Scoreboard(val ongoingMatches: MutableList<OngoingMatch> = mutableListOf()
 
     fun getMatchByTeams(homeTeam: Team, awayTeam: Team): OngoingMatch? {
         return ongoingMatches
-            .find {
-                it.homeTeam.name == homeTeam.name
-                        && it.awayTeam.name == awayTeam.name
+            .find { it.homeTeam.name == homeTeam.name &&
+                    it.awayTeam.name == awayTeam.name
             }
     }
 }
