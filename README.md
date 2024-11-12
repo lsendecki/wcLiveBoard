@@ -20,7 +20,7 @@ W rozwiązaniu wystepuje symulacja utrwalania/zapisu danych poprzez zapis do obi
 Pod spodem jest struktura mutowalnego zbioru (Set) elementów. Dzieki temu teoretycznie zapewniamy unikalnosc 
 zapamiętywanych spotkań miedzy druzynami. 
 
-Elementy przechowywane są typu OngoingMatch. Mogą one symulować encje/rekordy
+Przechowywane elementy są typu OngoingMatch. Mogą one symulować encje/rekordy
 w DB, jednak celowo nie ma encji osobnego obiektu ScoreBoard. Jest wlaśnie serwis ScoreBoardSerwis, ktorego interfejs
 realizuje operacje opisane w wymaganiach.
 
@@ -29,8 +29,7 @@ do ScoreBoard'u jest taka sama, jak chwila rozpoczecia gry.
 To rozwiazanie pozwala przekazac LocalDateTime jako parametr, ale to chyba warto zmienic.
 
 - ROZWIAZANIE AKTUALNE NIE JEST thread-safe - mozna ulepszyc przez wlasna implementacje synchronizacji, 
-korutyny (mutex), albo uzycie thread-safe mapy z JDK (ConcurrentHashMap).
-lub uzucie biblioteki
+korutyny (mutex), albo uzycie thread-safe mapy z JDK (ConcurrentHashMap) lub uzycie biblioteki.
 
 - MOZNA ULEPSZYC ROZWIAZANIE pod katem efektywnosci funkcji generujacej summary. Zamiast sortowac, mozna zwrocic 
 uporzadkowana juz strukture. Mozna tutaj zapropnowac kolejke priorytetowa (PriorityQueue) - 
