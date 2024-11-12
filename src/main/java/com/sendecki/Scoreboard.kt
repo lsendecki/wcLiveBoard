@@ -25,7 +25,13 @@ class Scoreboard(val ongoingMatches: MutableList<OngoingMatch>) {
         TODO("Add finish game implementation ")
     }
 
-    fun getSummary() = listOf<OngoingMatch>() // TODO("Implement a proper logic")
+    fun getSummary() =
+        ongoingMatches.sortedWith(
+            compareBy(
+                { - it.totalScore() },
+                { - it.timeIndicator() }
+            )
+        )
 
     fun active() = ongoingMatches.isNotEmpty()
 

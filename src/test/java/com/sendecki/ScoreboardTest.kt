@@ -37,7 +37,7 @@ class ScoreboardTest {
     }
 
     @Test
-    fun shouldCreateOrderedSummary() {
+    fun shouldCreateSmallOrderedSummary() {
         val scoreboard = Scoreboard(ongoingMatches = initializeMatches())
         scoreboard.updateScore(Team("Niemcy", 3), Team("Polska", 0))
         val summary = scoreboard.getSummary()
@@ -48,6 +48,49 @@ class ScoreboardTest {
         Assertions.assertThat(summary.last()).matches {
             it.homeTeam.name =="Argentyna" && it.awayTeam.name == "Wlochy"
         }
+    }
+    
+    @Test
+    fun shouldCreateBiggerOrderedSummary() {
+        val scoreboard = Scoreboard(ongoingMatches = initializeTournament())
+        scoreboard.updateScore(Team("Argentina", 3), Team("Australia", 1))
+        val summary = scoreboard.getSummary()
+        Assertions.assertThat(summary).isNotEmpty
+        Assertions.assertThat(summary).hasSize(5)
+        Assertions.assertThat(summary).containsExactly(
+            scoreboard.getMatchByTeams(Team("Uruguay"), Team("Italy"))!!,
+            scoreboard.getMatchByTeams(Team("Spain"), Team("Brazil"))!!,
+            scoreboard.getMatchByTeams(Team("Mexico"), Team("Canada"))!!,
+            scoreboard.getMatchByTeams(Team("Argentina"), Team("Australia"))!!,
+            scoreboard.getMatchByTeams(Team("Germany"), Team("France"))!!,
+
+        )
+        println(summary)
+    }
+
+    private fun initializeTournament(): MutableList<OngoingMatch> {
+        return  mutableListOf(
+            OngoingMatch(
+                Team(name = "Mexico", currentScore = 0),
+                Team(name = "Canada", currentScore = 5),
+                LocalDateTime.of(2024, 6, 1, 10,0,0)),
+            OngoingMatch(
+                Team(name = "Spain", currentScore = 10),
+                Team(name = "Brazil", currentScore = 2),
+                LocalDateTime.of(2024, 6, 1, 11,0,0)),
+            OngoingMatch(
+                Team(name = "Germany", currentScore = 2),
+                Team(name = "France", currentScore = 2),
+                LocalDateTime.of(2024, 6, 1, 11,30,0)),
+            OngoingMatch(
+                Team(name = "Uruguay", currentScore = 6),
+                Team(name = "Italy", currentScore = 6),
+                LocalDateTime.of(2024, 6, 1, 12,30,0)),
+            OngoingMatch(
+                Team(name = "Argentina"),
+                Team(name = "Australia"),
+                LocalDateTime.of(2024, 6, 1, 13,30,0))
+        )
     }
 
     private fun initializeMatches(): MutableList<OngoingMatch> {
