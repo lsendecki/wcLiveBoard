@@ -20,6 +20,17 @@ reprezentowanego przez druzyne
 do ScoreBoard'u jest taka sama, jak chwila rozpoczecia gry. 
 To rozwiazanie pozwala przekazac LocalDateTime jako parametr, ale to chyba warto zmienic.
 
+- ROZWIAZANIE AKTUALNE NIE JEST thread-safe - mozna ulepszyc przez wlasna implementacje synchronizacji, 
+korutyny (mutex), albo uzycie thread-safe mapy z JDK (ConcurrentHashMap).
+lub uzucie biblioteki
+
+- MOZNA ULEPSZYC ROZWIAZANIE pod katem efektywnosci funkcji generujacej summary. Zamiast sortowac, mozna zwrocic 
+uporzadkowana juz strukture. Mozna tutaj zapropnowac kolejke priorytetowa (PriorityQueue) - 
+w sumie mogę to jeszcze zrobić. Alternatywnie mozna zaimplementowac kopiec (na tablicy lub drzewie binarnym). 
+Wtedy wstawianie kolejnych OngoingMatch-ow będzie zawsze w sposób uporządkowany.
+ 
+
+
 
 
 
