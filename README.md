@@ -10,7 +10,7 @@ reprezentowanego przez druzyne
 
 - Obiektem głównym biblioteki jest klasa ScoreboardService
 
-- Utworzenie rozgrywki jest rownoznaczne z dodaniem nastepnujacych informacji:
+- Utworzenie rozgrywki jest rownoznaczne z dodaniem nastepujacych informacji:
     - druzyna gospodarzy
     - druzyna gosci
     - poczatkowy rezultat ustawiony jako 0:0
