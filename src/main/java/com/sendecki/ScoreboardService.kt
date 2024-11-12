@@ -25,6 +25,7 @@ class ScoreboardService(
         scoreboardReadService.getMatchByTeams(game.homeTeam, game.awayTeam)
             ?.let {
                 scoreboardWriteService.finishGame(it)
+                println("Game was finished and removed from scoreboard")
             }
     }
 

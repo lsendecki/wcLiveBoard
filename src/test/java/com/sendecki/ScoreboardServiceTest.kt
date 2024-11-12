@@ -78,6 +78,22 @@ class ScoreboardServiceTest {
     }
 
     @Test
+    fun shouldNotFinishNonExistingMatch() {
+        val scoreboardService = ScoreboardService(
+            ScoreboardReadService(InMemoryRepo(scoreStorage)),
+            ScoreboardWriteService(InMemoryRepo(scoreStorage))
+        )
+        initializeMatches().forEach { scoreboardService.addMatch(it.first, it.second, it.third) }
+        val homeTeam = Team("Gruzja", 1)
+        val awayTeam = Team("Francja", 9)
+        assertThat(scoreboardService.scoreboardActive()).isTrue()
+        assertThat(scoreboardService.countMatches()).isEqualTo(3)
+        scoreboardService.finishGame(OngoingMatch(homeTeam=homeTeam, awayTeam=awayTeam))
+        assertThat(scoreboardService.scoreboardActive()).isTrue()
+        assertThat(scoreboardService.countMatches()).isEqualTo(3)
+    }
+
+    @Test
     fun shouldAloneMatchBeFinished() {
         val scoreboardService = ScoreboardService(
             ScoreboardReadService(InMemoryRepo(scoreStorage)),
