@@ -10,21 +10,21 @@ class ScoreboardServiceTest {
 
     @BeforeEach
     fun beforeEach() {
-        mundialStore.clean();
+        scoreStorage.clean();
     }
 
     @Test
     fun shouldCreateSummaryForEmptyScoreboard() {
         val scoreboardService = ScoreboardService(
-            ScoreboardReadService(InMemoryRepo(mundialStore)),
-            ScoreboardWriteService(InMemoryRepo(mundialStore)))
+            ScoreboardReadService(InMemoryRepo(scoreStorage)),
+            ScoreboardWriteService(InMemoryRepo(scoreStorage)))
         assertThat(scoreboardService.getSummary()).isEmpty()
     }
 
     @Test
     fun shouldCreateSummaryForSingletonScoreboard() {
-        val scoreboardReadService = ScoreboardReadService(InMemoryRepo(mundialStore))
-        val scoreboardWriteService = ScoreboardWriteService(InMemoryRepo(mundialStore))
+        val scoreboardReadService = ScoreboardReadService(InMemoryRepo(scoreStorage))
+        val scoreboardWriteService = ScoreboardWriteService(InMemoryRepo(scoreStorage))
         val scoreboardService = ScoreboardService(
             scoreboardReadService,
             scoreboardWriteService
@@ -45,8 +45,8 @@ class ScoreboardServiceTest {
     @Test
     fun shouldAddMatchesToScoreboard() {
         val scoreboardService = ScoreboardService(
-            ScoreboardReadService(InMemoryRepo(mundialStore)),
-            ScoreboardWriteService(InMemoryRepo(mundialStore))
+            ScoreboardReadService(InMemoryRepo(scoreStorage)),
+            ScoreboardWriteService(InMemoryRepo(scoreStorage))
         )
         scoreboardService.addMatch(
             Team("Australia"),
@@ -63,10 +63,10 @@ class ScoreboardServiceTest {
 
     @Test
     fun shouldScoreBeUpdated() {
-        val scoreboardReadService = ScoreboardReadService(InMemoryRepo(mundialStore))
+        val scoreboardReadService = ScoreboardReadService(InMemoryRepo(scoreStorage))
         val scoreboardService = ScoreboardService(
             scoreboardReadService,
-            ScoreboardWriteService(InMemoryRepo(mundialStore))
+            ScoreboardWriteService(InMemoryRepo(scoreStorage))
         )
         initializeMatches().forEach { scoreboardService.addMatch(it.first, it.second, it.third) }
         val homeTeam = Team("Niemcy", 3)
@@ -80,8 +80,8 @@ class ScoreboardServiceTest {
     @Test
     fun shouldAloneMatchBeFinished() {
         val scoreboardService = ScoreboardService(
-            ScoreboardReadService(InMemoryRepo(mundialStore)),
-            ScoreboardWriteService(InMemoryRepo(mundialStore))
+            ScoreboardReadService(InMemoryRepo(scoreStorage)),
+            ScoreboardWriteService(InMemoryRepo(scoreStorage))
         )
         val ausie = Team("Australia")
         val portugal = Team("Portugalia")
@@ -97,10 +97,10 @@ class ScoreboardServiceTest {
 
     @Test
     fun shouldSelectedMatchBeFinished() {
-        val scoreboardReadService = ScoreboardReadService(InMemoryRepo(mundialStore))
+        val scoreboardReadService = ScoreboardReadService(InMemoryRepo(scoreStorage))
         val scoreboardService = ScoreboardService(
             scoreboardReadService,
-            ScoreboardWriteService(InMemoryRepo(mundialStore))
+            ScoreboardWriteService(InMemoryRepo(scoreStorage))
         )
         initializeMatches().forEach { scoreboardService.addMatch(it.first, it.second, it.third) }
 
@@ -115,8 +115,8 @@ class ScoreboardServiceTest {
     @Test
     fun shouldCreateSmallOrderedSummary() {
         val scoreboardService = ScoreboardService(
-            ScoreboardReadService(InMemoryRepo(mundialStore)),
-            ScoreboardWriteService(InMemoryRepo(mundialStore))
+            ScoreboardReadService(InMemoryRepo(scoreStorage)),
+            ScoreboardWriteService(InMemoryRepo(scoreStorage))
         )
         initializeMatches().forEach { scoreboardService.addMatch(it.first, it.second, it.third) }
         scoreboardService.updateScore(
@@ -134,10 +134,10 @@ class ScoreboardServiceTest {
     
     @Test
     fun shouldCreateBiggerOrderedSummary() {
-        val scoreboardReadService = ScoreboardReadService(InMemoryRepo(mundialStore))
+        val scoreboardReadService = ScoreboardReadService(InMemoryRepo(scoreStorage))
         val scoreboardService = ScoreboardService(
             scoreboardReadService,
-            ScoreboardWriteService(InMemoryRepo(mundialStore))
+            ScoreboardWriteService(InMemoryRepo(scoreStorage))
         )
         initializeTournament().forEach { scoreboardService.addMatch(it.first, it.second, it.third) }
         scoreboardService.updateScore(

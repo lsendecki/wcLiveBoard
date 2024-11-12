@@ -1,8 +1,8 @@
 package com.sendecki
 
-typealias mundialStore = Storage
+typealias scoreStorage = MundialInfoStorage
 
-object Storage {
+object MundialInfoStorage {
     private val ongoingMatches = mutableListOf<OngoingMatch>()
     fun getData() = ongoingMatches
     fun clean() = getData().clear()
@@ -12,7 +12,7 @@ sealed interface ScoreboardRepo {
     fun getStorage(): MutableList<OngoingMatch>
 }
 
-class InMemoryRepo(private val dataSource: Storage) : ScoreboardRepo {
+class InMemoryRepo(private val dataSource: MundialInfoStorage) : ScoreboardRepo {
     override fun getStorage(): MutableList<OngoingMatch> {
         return dataSource.getData()
     }
