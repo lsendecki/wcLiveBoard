@@ -57,7 +57,7 @@ class ScoreboardServiceTest {
             Team("Szwajcaria"))
 
         assertNotNull(scoreboardService)
-        assertTrue(scoreboardService.active())
+        assertTrue(scoreboardService.scoreboardActive())
         assertEquals(2, scoreboardService.countMatches())
     }
 
@@ -90,9 +90,9 @@ class ScoreboardServiceTest {
             ausie,
             portugal)
 
-        assertThat(scoreboardService.active()).isTrue()
+        assertThat(scoreboardService.scoreboardActive()).isTrue()
         scoreboardService.finishGame(OngoingMatch(homeTeam = ausie, awayTeam = portugal))
-        assertThat(scoreboardService.active()).isFalse()
+        assertThat(scoreboardService.scoreboardActive()).isFalse()
     }
 
     @Test
@@ -104,11 +104,11 @@ class ScoreboardServiceTest {
         )
         initializeMatches().forEach { scoreboardService.addMatch(it.first, it.second, it.third) }
 
-        assertThat(scoreboardService.active()).isTrue()
+        assertThat(scoreboardService.scoreboardActive()).isTrue()
         assertThat(scoreboardService.countMatches()).isEqualTo(3)
         val niemcyPolskaMatch = scoreboardReadService.getMatchByTeams(Team(name = "Niemcy"), Team(name = "Polska"))
         scoreboardService.finishGame(niemcyPolskaMatch!!)
-        assertThat(scoreboardService.active()).isTrue()
+        assertThat(scoreboardService.scoreboardActive()).isTrue()
         assertThat(scoreboardService.countMatches()).isEqualTo(2)
     }
 

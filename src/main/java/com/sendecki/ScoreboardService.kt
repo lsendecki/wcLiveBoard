@@ -30,7 +30,7 @@ class ScoreboardService(
 
     fun getSummary() = scoreboardReadService.getSummary()
 
-    fun active() = scoreboardReadService.active()
+    fun scoreboardActive() = scoreboardReadService.active()
 
     fun countMatches() =  scoreboardReadService.countMatches()
 }
