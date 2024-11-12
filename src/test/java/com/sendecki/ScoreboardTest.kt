@@ -8,8 +8,32 @@ import java.time.LocalDateTime
 class ScoreboardTest {
 
     @Test
+    fun shouldCreateSummaryForEmptyScoreboard() {
+        val scoreboard = Scoreboard()
+        Assertions.assertThat(scoreboard.getSummary()).isEmpty()
+    }
+
+    @Test
+    fun shouldCreateSummaryForSingletonScoreboard() {
+        val rpa = Team(name = "Republic of Southern Africa", currentScore = 3)
+        val burkinaFaso = Team(name = "Burkina Faso", currentScore = 2)
+        val scoreboard = Scoreboard(
+            OngoingMatch(
+                homeTeam = rpa,
+                awayTeam = burkinaFaso,
+                gameStartedAt = LocalDateTime.now()
+            )
+        )
+        val summary = scoreboard.getSummary()
+        Assertions.assertThat(summary).hasSize(1)
+        Assertions.assertThat(summary).containsExactly(
+            scoreboard.getMatchByTeams(rpa, burkinaFaso)!!
+        )
+    }
+
+    @Test
     fun shouldAddMatchesToScoreboard() {
-        val scoreboard = Scoreboard(ongoingMatches = mutableListOf())
+        val scoreboard = Scoreboard()
         scoreboard.addMatch(
             Team("Australia"),
             Team("Portugalia"),
@@ -39,7 +63,9 @@ class ScoreboardTest {
     @Test
     fun shouldCreateSmallOrderedSummary() {
         val scoreboard = Scoreboard(ongoingMatches = initializeMatches())
-        scoreboard.updateScore(Team("Niemcy", 3), Team("Polska", 0))
+        scoreboard.updateScore(
+            Team(name = "Niemcy", currentScore = 3),
+            Team(name = "Polska", currentScore = 0))
         val summary = scoreboard.getSummary()
         Assertions.assertThat(summary).isNotEmpty
         Assertions.assertThat(summary.first()).matches {
@@ -53,7 +79,9 @@ class ScoreboardTest {
     @Test
     fun shouldCreateBiggerOrderedSummary() {
         val scoreboard = Scoreboard(ongoingMatches = initializeTournament())
-        scoreboard.updateScore(Team("Argentina", 3), Team("Australia", 1))
+        scoreboard.updateScore(
+            Team(name = "Argentina", currentScore = 3),
+            Team(name = "Australia", currentScore = 1))
         val summary = scoreboard.getSummary()
         Assertions.assertThat(summary).isNotEmpty
         Assertions.assertThat(summary).hasSize(5)

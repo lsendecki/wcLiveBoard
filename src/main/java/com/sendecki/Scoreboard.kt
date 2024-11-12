@@ -2,7 +2,9 @@ package com.sendecki
 
 import java.time.LocalDateTime
 
-class Scoreboard(val ongoingMatches: MutableList<OngoingMatch>) {
+class Scoreboard(val ongoingMatches: MutableList<OngoingMatch> = mutableListOf()) {
+
+    constructor(ongoingMatch: OngoingMatch) : this(mutableListOf(ongoingMatch))
 
     fun addMatch(homeTeam: Team, awayTeam: Team, startsAt: LocalDateTime) {
         ongoingMatches.add(
