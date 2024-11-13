@@ -19,7 +19,7 @@ information into an object kept in memory during the execution of the program. A
 Set container is used under the hood. Thanks to that we ensure set-theoretic uniqueness of team gatherings 
 that are put into memory.
 
-All the stored elements are of OngoingMatch type. The can mimic DB entities as well, however we deliberately 
+All the stored elements are of OngoingMatch type. They can mimic DB entities as well, however we deliberately 
 avoid the existence of an individual Scoreboard object. Instead, there is a component-alike service class 
 called ScoreboardService which provides an interface for all the expected operations. 
 
@@ -38,8 +38,8 @@ that is we could keep the required order of items once an element has been inser
 Usually this can be done with a heap structure (implemented as arrays or trees). The easiest way here seems 
 to be a JDK PriorityQueue.
 
-----------------------------------------------------------------------------------------
-----------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------
 
 Biblioteka narzedziowa do przechowywania informacji o wszystkich aktualnych 
 meczach druzyn na mundialu, wraz z bieżącymi wynikami.
