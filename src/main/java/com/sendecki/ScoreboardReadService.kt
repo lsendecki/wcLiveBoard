@@ -10,14 +10,13 @@ class ScoreboardReadService(private val scoreboardRepo: ScoreboardRepo) {
             )
         )
 
-    fun active() = scoreboardRepo.getStorage().isNotEmpty()
+    fun isActive() = scoreboardRepo.getStorage().isNotEmpty()
 
     fun countMatches() = scoreboardRepo.getStorage().size
 
-    fun getMatchByTeams(homeTeam: Team, awayTeam: Team): OngoingMatch? {
-        return scoreboardRepo.getStorage()
-            .find { it.homeTeam.name == homeTeam.name &&
-                    it.awayTeam.name == awayTeam.name
+    fun getMatchByTeams(homeTeam: Team, awayTeam: Team) =
+        scoreboardRepo.getStorage()
+            .find { it.homeTeam.name == homeTeam.name
+                    && it.awayTeam.name == awayTeam.name
             }
-    }
 }
