@@ -1,7 +1,5 @@
 package com.sendecki
 
-import java.util.PriorityQueue
-
 class ScoreboardReadService(private val scoreboardRepo: ScoreboardRepo) {
 
     fun getSummary() = scoreboardRepo.getStorage()
