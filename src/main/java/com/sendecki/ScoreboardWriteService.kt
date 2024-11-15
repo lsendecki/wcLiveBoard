@@ -6,12 +6,10 @@ import java.time.LocalDateTime
 class ScoreboardWriteService(private val scoreboardRepo: ScoreboardRepo) {
 
     fun addMatch(homeTeam: Team, awayTeam: Team, startsAt: LocalDateTime = LocalDateTime.now()) {
-        scoreboardRepo.getStorage().add(
-            OngoingMatch(
-                homeTeam = homeTeam,
-                awayTeam = awayTeam,
-                gameStartedAt = startsAt
-            )
+        scoreboardRepo.getStorage().add(OngoingMatch(
+            homeTeam = homeTeam,
+            awayTeam = awayTeam,
+            gameStartedAt = startsAt)
         )
     }
 
