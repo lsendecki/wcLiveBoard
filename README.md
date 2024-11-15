@@ -31,12 +31,10 @@ The solutions is not Thread-safe. It can be achieved with the own implementation
 if needed, with the use of coroutines and mutex (binary semaphore). One can also think of either using 
 ConcurrentHashMap directly from JDK or some dedicated concurrency library.
 
-The solution can also be enhanced in terms of performance. The running time of the function that generates 
-summary strongly depends on the algorithm, which is currently based on sorting. It should be easy to introduce
-a priority queue instead of a list/set. This way we could insert elements (OngoingMatch[s]) in a clever way, 
-that is we could keep the required order of items once an element has been inserted. 
-Usually this can be done with a heap structure (implemented as arrays or trees). The easiest way here seems 
-to be a JDK PriorityQueue.
+The solution was enhanced in terms of performance. the function that generates summary runs in O(1) time. 
+It just returns already a properly ordered collection of matches. We insert elements (OngoingMatch[s]) 
+in a way that we keep the required order of items once an element gets inserted. A tree-based data structure
+is used to accomplish the thing.
 
 ------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------
@@ -71,10 +69,9 @@ To rozwiazanie pozwala przekazac LocalDateTime jako parametr, ale to chyba warto
 - ROZWIAZANIE AKTUALNE NIE JEST thread-safe - mozna ulepszyc przez wlasna implementacje synchronizacji, 
 korutyny (mutex), albo uzycie thread-safe mapy z JDK (ConcurrentHashMap) lub uzycie biblioteki.
 
-- MOZNA ULEPSZYC ROZWIAZANIE pod katem efektywnosci funkcji generujacej summary. Zamiast sortowac, mozna zwrocic 
-uporzadkowana juz strukture. Mozna tutaj zapropnowac kolejke priorytetowa (PriorityQueue) - 
-w sumie mogę to jeszcze zrobić. Alternatywnie mozna zaimplementowac kopiec (na tablicy lub drzewie binarnym). 
-Wtedy wstawianie kolejnych OngoingMatch-ow będzie zawsze w sposób uporządkowany.
+- W rozwiazaniu nie ma sortowania, które zostało zastąpione wstawianiem do drzewa binarnego. 
+- W ten sposób zwracamy uporzadkowana juz strukture. Użyta została klasa TreeSet, która przechowuje 
+porównywalne elementy w porządku drzewiastym.
  
 
 
