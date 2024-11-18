@@ -1,8 +1,7 @@
-package com.sendecki
+package com.scoreservices
 
 import java.time.LocalDateTime
 import java.time.ZoneOffset
-import java.util.*
 
 data class OngoingMatch(
     val homeTeam: Team,

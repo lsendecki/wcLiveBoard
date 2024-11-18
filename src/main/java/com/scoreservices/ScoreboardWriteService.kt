@@ -1,4 +1,4 @@
-package com.sendecki
+package com.scoreservices
 
 import java.time.LocalDateTime
 

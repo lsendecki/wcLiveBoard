@@ -1,4 +1,4 @@
-package com.sendecki
+package com.scoreservices
 
 class ScoreboardReadService(private val scoreboardRepo: ScoreboardRepo) {
 

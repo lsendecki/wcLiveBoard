@@ -1,6 +1,6 @@
 package com.scoreboard
 
-import com.sendecki.*
+import com.scoreservices.*
 import java.time.LocalDateTime
 import java.util.*
 

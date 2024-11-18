@@ -1,6 +1,6 @@
 package com.scoreboard
 
-import com.sendecki.Team
+import com.scoreservices.Team
 
 fun main(args: Array<String>) {
     val polishNationalDream = Team("Poland")

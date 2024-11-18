@@ -1,4 +1,4 @@
-package com.sendecki
+package com.scoreservices
 
 import java.util.TreeSet
 import kotlin.math.sign
