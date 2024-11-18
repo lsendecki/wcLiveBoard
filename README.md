@@ -19,9 +19,9 @@ information into an object kept in memory during the execution of the program. A
 Set container is used under the hood. Thanks to that we ensure set-theoretic uniqueness of team gatherings 
 that are put into memory.
 
-All the stored elements are of OngoingMatch type. They can mimic DB entities as well, however we deliberately 
-avoid the existence of an individual Scoreboard object. Instead, there is a component-alike service class 
-called ScoreboardService which provides an interface for all the expected operations. 
+All the stored elements are of OngoingMatch type. They can mimic DB entities as well. 
+There is an individual Scoreboard object that encapsulates component-alike class 
+called ScoreboardService. Scoreboard class provides an interface for all the expected operations. 
 
 Date and time of the beginning of a match can easily be generated automatically provided that (assuming)
 the match is added to the scoreboard at the same time when a game is started on the pitch.
