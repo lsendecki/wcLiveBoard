@@ -2,7 +2,7 @@ package com.sendecki
 
 import java.time.LocalDateTime
 
-// thread-unsafe solution based on lists as a storage
+// thread-unsafe solution based on mutable collections as a storage
 class ScoreboardWriteService(private val scoreboardRepo: ScoreboardRepo) {
 
     fun addMatch(homeTeam: Team, awayTeam: Team, startsAt: LocalDateTime = LocalDateTime.now()) {
