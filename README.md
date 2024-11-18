@@ -59,8 +59,8 @@ Pod spodem jest struktura mutowalnego zbioru (Set) elementów. Dzieki temu teore
 zapamiętywanych spotkań miedzy druzynami. 
 
 Przechowywane elementy są typu OngoingMatch. Mogą one symulować encje/rekordy
-w DB, jednak celowo nie ma encji osobnego obiektu ScoreBoard. Jest wlaśnie serwis ScoreBoardSerwis, ktorego interfejs
-realizuje operacje opisane w wymaganiach.
+w DB. Jest też osobny typ Scoreboard, ktorego interfejs implementuje operacje 
+opisane w wymaganiach. Użycie obieku jest przedstawione w klasie Main.
 
 - Data i czas rozpoczecia gry moga byc generowane przez algorytm, przy zalozeniu, że chwila dodania meczu 
 do ScoreBoard'u jest taka sama, jak chwila rozpoczecia gry. 
