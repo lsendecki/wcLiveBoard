@@ -188,7 +188,6 @@ class ScoreboardServiceTest {
             scoreboardReadService.getMatchByTeams(Team("Mexico"), Team("Canada"))!!,
             scoreboardReadService.getMatchByTeams(Team("Argentina"), Team("Australia"))!!,
             scoreboardReadService.getMatchByTeams(Team("Germany"), Team("France"))!!,
-
         )
         println(summary)
     }
