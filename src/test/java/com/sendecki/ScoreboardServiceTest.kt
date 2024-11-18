@@ -100,8 +100,8 @@ class ScoreboardServiceTest {
     @Test
     fun shouldNotFinishNonExistingMatch() {
         val scoreboardService = ScoreboardService(
-            ScoreboardReadService(InMemoryRepo(scoreStorage)),
-            ScoreboardWriteService(InMemoryRepo(scoreStorage))
+            ScoreboardReadService(treeRepo),
+            ScoreboardWriteService(treeRepo)
         )
         initializeMatches().forEach { scoreboardService.addMatch(it.first, it.second, it.third) }
         val homeTeam = Team("Gruzja", 1)
