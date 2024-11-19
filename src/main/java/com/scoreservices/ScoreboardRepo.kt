@@ -3,13 +3,11 @@ package com.scoreservices
 import java.util.TreeSet
 import kotlin.math.sign
 
-typealias scoreStorage = MundialInfoStorage
-
-object MundialInfoStorage {
+class MundialInfoStorage {
 
     private val matchesOrdering = { m1: OngoingMatch, m2:OngoingMatch ->
-        if (m1.homeTeam.name == m2.homeTeam.name
-            && m1.awayTeam.name == m2.awayTeam.name) {
+        if (m1.homeName == m2.homeName
+            && m1.awayName == m2.awayName) {
             0
         } else if (m1.totalScore() == m2.totalScore()) {
             sign((m2.timeIndicator() - m1.timeIndicator()).toDouble()).toInt()

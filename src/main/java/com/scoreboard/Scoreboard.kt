@@ -6,7 +6,7 @@ import java.util.*
 
 class Scoreboard {
 
-    private val scoreboardRepo = InMemoryTreeRepo(scoreStorage)
+    private val scoreboardRepo = InMemoryTreeRepo(MundialInfoStorage())
 
     private val scoreboardService = ScoreboardService(
         ScoreboardReadService(scoreboardRepo),

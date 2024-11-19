@@ -8,11 +8,12 @@ import java.time.LocalDateTime
 
 class ScoreboardServiceTest {
 
-    private val treeRepo = InMemoryTreeRepo(scoreStorage)
+    private val dataSource = MundialInfoStorage()
+    private val treeRepo = InMemoryTreeRepo(dataSource)
 
     @BeforeEach
     fun beforeEach() {
-        scoreStorage.clean();
+        dataSource.clean();
     }
 
     @Test
@@ -93,8 +94,8 @@ class ScoreboardServiceTest {
         val awayTeam = Team("Polska", 2)
         scoreboardService.updateScore(homeTeam, awayTeam)
         val gameUpdated = scoreboardReadService.getMatchByTeams(homeTeam, awayTeam)
-        assertThat(gameUpdated!!.homeScore()).isEqualTo(3)
-        assertThat(gameUpdated!!.awayScore()).isEqualTo(2)
+        assertThat(gameUpdated!!.homeScore).isEqualTo(3)
+        assertThat(gameUpdated!!.awayScore).isEqualTo(2)
     }
 
     @Test
@@ -161,10 +162,10 @@ class ScoreboardServiceTest {
         val summary = scoreboardService.getSummary()
         assertThat(summary).isNotEmpty
         assertThat(summary.first()).matches {
-            it.homeTeam.name =="Niemcy" && it.awayTeam.name == "Polska"
+            it.homeName =="Niemcy" && it.awayName == "Polska"
         }
         assertThat(summary.last()).matches {
-            it.homeTeam.name =="Argentyna" && it.awayTeam.name == "Wlochy"
+            it.homeName =="Argentyna" && it.awayName == "Wlochy"
         }
     }
     

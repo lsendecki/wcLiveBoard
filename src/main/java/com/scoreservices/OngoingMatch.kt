@@ -8,11 +8,14 @@ data class OngoingMatch(
     val awayTeam: Team,
     val gameStartedAt: LocalDateTime = LocalDateTime.now()
 ) {
-    fun homeScore() = homeTeam.goalsScored
-    fun awayScore() = awayTeam.goalsScored
+    val homeName get() = this.homeTeam.name
+    val awayName get() = this.awayTeam.name
+
+    val homeScore get() = homeTeam.goalsScored
+    val awayScore get() = awayTeam.goalsScored
 
     fun totalScore() = homeTeam.goalsScored + awayTeam.goalsScored
     fun timeIndicator() =  gameStartedAt.toInstant(ZoneOffset.UTC).toEpochMilli()
 
-    override fun toString() = "${homeTeam.name}: ${homeScore()} - ${awayTeam.name}: ${awayScore()}"
+    override fun toString() = "${homeTeam.name}: ${homeScore} - ${awayTeam.name}: ${awayScore}"
 }

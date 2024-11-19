@@ -10,7 +10,7 @@ class ScoreboardReadService(private val scoreboardRepo: ScoreboardRepo) {
 
     fun getMatchByTeams(homeTeam: Team, awayTeam: Team) =
         scoreboardRepo.getStorage()
-            .find { it.homeTeam.name == homeTeam.name
-                    && it.awayTeam.name == awayTeam.name
+            .find { it.homeName == homeTeam.name
+                    && it.awayName == awayTeam.name
             }
 }
